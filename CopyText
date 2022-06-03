@@ -1,0 +1,17 @@
+   Button copyText = (Button) findViewById(R.id.copy_btn);
+        copyText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                String getString = name.getText().toString();
+                ClipData clip = ClipData.newPlainText("PlainTex", getString);
+
+                clipboard.setPrimaryClip(clip);
+                clip.getDescription();
+
+                Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
