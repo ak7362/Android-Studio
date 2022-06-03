@@ -1,0 +1,53 @@
+    Button share_btn = (Button) findViewById(R.id.share);
+
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) image.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+
+        share_btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show();
+                shareImage(bitmap);
+            }
+        });
+        
+        }   //File Create for shareImage
+  
+  
+   private void shareImage(Bitmap bitmap) {
+
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        Uri bmpUri;
+        String textToShare = txt;
+        bmpUri = saveImage(bitmap, getApplicationContext());
+        share.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        share.putExtra(Intent.EXTRA_STREAM, bmpUri);
+        share.putExtra(Intent.EXTRA_SUBJECT, "New App");
+        share.putExtra(Intent.EXTRA_TEXT, textToShare);
+        startActivity(Intent.createChooser(share, "share Content"));
+
+    }
+
+    private static Uri saveImage(Bitmap image, Context context) {
+        File imagesFolder = new File(context.getCacheDir(), "images");
+        Uri uri = null;
+        try {
+            imagesFolder.mkdir();
+            File file = new File(imagesFolder, "share_image.jpg");
+            FileOutputStream stream = new FileOutputStream(file);
+            image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            stream.flush();    //use on buffered streams
+            stream.close();
+
+            uri = FileProvider.getUriForFile(Objects.requireNonNull(context.getApplicationContext()),
+                    "com.example.task" + ".provider", file);
+        } catch (Exception e) {
+            Log.d("TAG", "Exception" + e.getMessage());
+        }
+
+        return uri;
+    }
+
+   
