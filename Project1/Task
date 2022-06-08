@@ -1,0 +1,13 @@
+
+TASK 2:-
+1)In Activity 2 and 3 buttons copy, save/Download,ShareText& ShareImage
+2)On Click of Copy , copy the text of textview ,show a toast that message is copied
+3)same for other 3 buttons share the text of textview , share the image of imageview and
+download the image of imageView in your device and show a toast "image is downloaded in device gallery."
+
+TASK 3:-
+1)Now Show a alert box in place of toast in copy button
+2)And custom alert box in place of toast in save/downloaded button
+
+TASK 4:-
+1)IN Activity1 recyclerView ,featch all text details from sqlite dataBase and display(DataBase file will be present in assets folader of the app)
