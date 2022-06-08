@@ -1,0 +1,31 @@
+    AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setTitle("Copy");
+                builder.setMessage("Do you want really copy?");
+
+                builder.setCancelable(false);  //when you press back button alert does not exit
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        clipboard.setPrimaryClip(clip);
+                        clip.getDescription();
+                        Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.create().show();  //for alert box create
+
+//                Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
