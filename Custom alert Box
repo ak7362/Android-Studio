@@ -1,0 +1,38 @@
+//create alert_dialog layout
+
+                ViewGroup viewGroup=findViewById(android.R.id.content);
+                AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                View view= LayoutInflater.from(context).inflate(R.layout.alert_dialog,viewGroup,false);
+                builder.setCancelable(false);
+                builder.setView(view);
+
+                TextView txtCancel=view.findViewById(R.id.Cancel_btn);
+                Button btn=view.findViewById(R.id.btn_download);
+
+
+
+                AlertDialog alertDialog=builder.create();
+
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context,"Downloading",Toast.LENGTH_SHORT).show();
+                        saveBitMap(context, bitmap1);
+
+                    }
+                });
+
+                txtCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+
+
+
+            }
+        });
